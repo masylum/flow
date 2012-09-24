@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+    <meta charset="utf-8">
+
+
+    <!-- iPad/iPhone specific css below, add after your main css >
+    <link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="ipad.css" type="text/css" />
+    <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="css/iphone.css" type="text/css" />
+    -->
+    <link rel="stylesheet" href="css/iphone.css" type="text/css" />
+
+    <!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
+    <script type="text/javascript" charset="utf-8" src="js/cordova-1.7.0.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/zepto.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/swipe.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/underscore.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="js/app/index.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/views/home.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/views/test.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/views/tutorial.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/views/results.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/app/bootstrap.js"></script>
+
+    <script type="text/javascript">
+    // prevents dragging
+    function preventBehavior(e) {
+      e.preventDefault();
+    };
+    document.addEventListener("touchmove", preventBehavior, false);
+
+    function onBodyLoad() {
+      document.addEventListener("deviceready", onDeviceReady, false);
+    }
+
+    /* When this function is called, Cordova has been initialized and is ready to roll */
+    /* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
+    see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
+    for more details -jm */
+    function onDeviceReady() {
+      // do your thing!
+      //navigator.notification.alert("Cordova is working")
+    }
+
+    </script>
+
+    <!-- templates -->
+    <script type='text/template' id='results_tpl'>
+    </script>
+
+    <script type='text/template' id='test_tpl'>
+    </script>
+
+    <script type='text/template' id='home_tpl'>
+      <div class='home'>
+        <h1>
+          <a href='#!/'><img src="img/medium_logo.png" style="height: 60px;"></a>
+        </h1>
+
+        <ol class='tags'>
+          <li class='t-taketest'></li>
+          <li class='t-results'></li>
+          <li class='t-settings'></li>
+        </ol>
+
+        <ol class='menu'>
+          <li class='taketest'>
+            <div class='home-icon'><img src='img/test.png'/></div>
+            <div style='float: left'><a href='#'>Start test</a></div>
+            <div style='clear:both'></div>
+          </li>
+
+          <li class='results'>
+            <div class='home-icon'><img src='img/results.png'/></div>
+            <div style='float: left'><a href='#'>Results</a></div>
+            <div style='clear:both'></div>
+          </li>
+
+          <li class='settings'>
+            <div class='home-icon'><img src='img/settings.png'/></div>
+            <div style='float: left'><a href='#'>Settings</a></div>
+            <div style='clear:both'></div>
+          </li>
+        </ol>
+
+        <div id='contents'></div>
+
+      </div>
+    </script>
+  </head>
+
+  <body onload="onBodyLoad()"></body>
+
+</html>

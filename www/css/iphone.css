@@ -1,0 +1,214 @@
+body {
+  padding: 0;
+  margin: 0;
+  background: #EEFBFF;
+  font-family: Helvetica, sans-serif;
+  color: #FDF9CC; /*yellow*/
+  -webkit-tap-highlight-color: transparent;
+}
+
+body > div {
+  padding-top: 20px;
+  max-width: 640px;
+}
+
+a {
+  color: #FDF9CC;
+  text-decoration: none;
+}
+
+h1 {
+  margin: 0px;
+  text-align: center;
+  font-weight: none;
+}
+
+h1 a {
+  color: #3A3435/*dark*/
+}
+
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* HOME */
+.home > ol.menu > li {
+  font-size: 40px;
+  line-height: 48px;
+  height: 58px;
+  padding: 21px;
+  padding-left: 80px;
+  text-shadow: 0px 1px 0px #fff;
+}
+
+.home ol.tags li {
+  width: 10px;
+  height: 100px;
+}
+
+.home ol.tags .t-taketest {
+  background: #00B4D5; /*dark_blue*/
+}
+
+.home ol.tags .t-results {
+  background: #6CC7E2; /*medium_blue*/
+}
+
+.home ol.tags .t-settings {
+  background: #A3D9EA; /*light_blue*/
+}
+
+.home ol.tags {
+  float: left;
+}
+
+.home ol.menu a {
+  color: #333333;
+}
+
+/* TEST */
+.test {
+  padding-top: 0px;
+}
+
+.inner.results {
+  height: 443px;
+  overflow-y: scroll;
+}
+
+.test > ol > li > ol > li {
+  opacity: 0.05;
+}
+
+.test > ol > li,
+.results > ol > li {
+  margin-bottom: 2px;
+  position: relative;
+}
+
+.results > ol > li {
+  background: #444;/*dark*/
+}
+
+.results > ol > li > strong {
+  display: inline-block;
+  padding: 20px;
+}
+
+.test > ol > li.run > ol > li {
+  opacity: 0.4;
+}
+
+.test > ol > li.done > ol > li,
+.results > ol > li > ol > li {
+  opacity: 1;
+}
+
+.inner {
+  display: none;
+}
+
+.test > ol > li > ol > li,
+.results > ol > li > ol > li {
+  position: relative;
+  margin: 1px 0px;
+  padding: 12px 10px;
+  background: #fff;
+  color: #3A3435;/*dark*/
+  font-size: 15px;
+}
+
+.test > ol > li > ol > li > ol,
+.results > ol > li > ol > li > ol {
+  float: right;
+  width: 172px;
+  position: relative;
+}
+
+.results > ol > li > ol {
+  display: none;
+}
+
+.test .result,
+.results .result {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin: 3px;
+  position: absolute;
+}
+
+.test .explanation,
+.results .explanation {
+  position: absolute;
+  left: 30px;
+}
+
+.test .result.selected {
+  border: 3px solid #e54;
+  margin: 0px;
+}
+
+.test .timer {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  padding: 10px;
+  background: #3A3435;/*dark*/
+  color: #FDF9CC; /*yellow*/
+  border-radius: 2px;
+  margin-left: -30px;
+  margin-top: -18px;
+  height: 17px;
+}
+
+#tutorial ul {
+  padding: 0;
+  padding-top: 90px;
+  margin: 0;
+}
+
+#tutorial ul li {
+  text-align: center;
+  font-size: 20px;
+  height: 390px;
+  color: #fff;
+}
+
+#tutorial ul li img {
+  margin: 0 auto;
+}
+
+#tutorial ul li p {
+  width: 80%;
+  margin: 60px auto 0px;
+  text-align: left;
+}
+
+ol.menu, ol.tags {
+  padding-top: 50px;
+  float: left;
+}
+
+.home-icon {
+  float: left;
+  width: 70px;
+  margin-left: -50px;
+  opacity: 1;
+}
+
+.tutorial .inner img {
+  height: 200px;
+}
+
+.timer3 {
+  margin-top: 0 !important;
+}
+
+.description {
+  width: 270px;
+  display: none;
+  padding-top: 5px;
+}
