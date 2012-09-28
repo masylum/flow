@@ -1,1 +1,4 @@
-var Flow = {views: {}};
+var Flow = {
+  views: {}
+, modules: {}
+};
