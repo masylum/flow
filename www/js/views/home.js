@@ -14,9 +14,9 @@
 
     _.each(['taketest', 'results', 'settings'], function (sel) {
       if (sel === section) {
-        $('.t-' + section).animate({height: 350, 'padding-top': 0, 'padding-bottom': 0}, {complete: function () {
+        $('.t-' + section).animate({height: 443, 'padding-top': 0, 'padding-bottom': 0}, {complete: function () {
           Flow.views[sel].render($('#content'));
-          $('#content').css({height: 350});
+          $('#content').css({opacity: 1});
         }});
       } else {
         $('.t-' + sel).animate({opacity: 0, height: 0});
@@ -25,11 +25,11 @@
   }
 
   Home.navigateBackHome = function (evt) {
-    $('.menu').animate({opacity: 1, height: 350, 'padding-top': 50});
+    $('#content').css({opacity: 0});
+    $('.menu').animate({opacity: 1, height: 443, 'padding-top': 50});
     $('.home').animate({'padding-top': 20});
     $('h1 img').animate({height: 60});
     $('.t-settings,.t-taketest,.t-results').animate({height: 100, opacity: 1});
-    $('#content').animate({height: 0});
   };
 
   Home.render = function ($el) {

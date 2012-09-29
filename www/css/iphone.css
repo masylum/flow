@@ -16,6 +16,12 @@ a {
   text-decoration: none;
 }
 
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 h1 {
   margin: 0px;
   text-align: center;
@@ -28,8 +34,30 @@ ol {
   padding: 0;
 }
 
+.button {
+  border: none;
+  font-size: 31px;
+  box-shadow: 3px 3px 0px #00B4D5;
+  border-radius: 2px;
+  color: white;
+  background: #6CC7E2;
+  padding: 5px 10px;
+}
+
+.button.selected {
+  background: #00B4D5;
+  left: 3px;
+  top: 3px;
+  position: relative;
+  box-shadow: none;
+}
+
+button.button {
+  width: 605px;
+}
+
 /* HOME */
-ol.menu, ol.tags, #content {
+ol.menu, ol.tags {
   padding-top: 50px;
   float: left;
 }
@@ -78,15 +106,16 @@ ol.menu, ol.tags, #content {
 /* CONTENT */
 #content {
   overflow: hidden;
-  height: 350px;
+  height: 443px;
   position: relative;
+  margin-top: 50px;
+  font-size: 31px;
 }
 
-#content > div {
+#tests > div {
   text-align: center;
   padding: 20px;
-  height: 310px;
-  font-size: 31px;
+  height: 403px;
   position: relative;
   top: 0;
 }
@@ -101,4 +130,65 @@ ol.menu, ol.tags, #content {
    position: absolute;
    top: 50%;
    left: 50%;
+}
+
+#content table tr td{
+  font-size: 25px;
+  padding: 0px 10px 10px;
+}
+
+#content table tr td.title{
+  text-align: left;
+}
+
+#content table tr td.value{
+  text-align: right;
+}
+
+#content table tr.down td.value {
+  color: #fa4;
+}
+
+#content table tr.good td.value{
+  color: #4d4;
+}
+
+.test-8 textarea {
+  padding: 10px;
+  border-radius: 2px;
+  height: 90px;
+  width: 580px;
+  background: #F9FFFF;
+  border: 1px solid #BEF;
+  resize: none;
+  font-size: 16px;
+}
+
+/* Results */
+#results .result {
+  padding: 10px;
+  margin-bottom: 10px;
+  height: 80px;
+  font-size: 25px;
+}
+
+#results .result .tag {
+  float: left;
+  width: 10px;
+  background: #fa4;
+  height: 100%;
+}
+
+#results .result .hour {
+  text-align: left;
+  padding-left: 20px;
+  line-height: 80px;
+}
+
+#results .result.collapsed {
+  height: 40px;
+}
+
+#results .result.collapsed .hour {
+  line-height: 40px;
 }

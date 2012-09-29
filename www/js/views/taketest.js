@@ -2,8 +2,8 @@
 (function () {
   var TakeTest = {}
     , $el
-    , slide = 0;
-
+    , result
+    , slide;
 
   function circleAttributes(diameter) {
     var radius = diameter / 2;
@@ -31,7 +31,7 @@
       $circles.animate(circleAttributes(50));
     }
 
-    $slides.animate({top: currentPosition - 350}, {complete: _.once(function () {
+    $slides.animate({top: currentPosition - 443}, {complete: _.once(function () {
       // if its a test
       if (slide === 3 || slide === 5) {
         Flow.modules.device.onData(function (error, value) {
@@ -42,21 +42,28 @@
 
       // if its the graph
       } else if (slide === 6) {
+        Flow.views.single_result.render($slides.eq(slide));
         Flow.modules.device.measure(function (error, data) {
-          $el.find('.pef .value').text(data.pef);
-          $el.find('.fev1 .value').text(data.fev1);
-          $el.find('.fvc .value').text(data.fvc);
-
-          $el.find('.icon').removeClass('spinner');
-          $el.find('.pef .icon').addClass(data.pef > 1000 ? 'good' : 'down');
-          $el.find('.fev1 .icon').addClass(data.fev1 > 1 ? 'good' : 'down');
-          $el.find('.fvc .icon').addClass(data.fvc > 500 ? 'good' : 'down');
+          Flow.views.single_result.populate(data);
+          result = data;
           $el.click(nextSlide);
         });
-      // last one
+
+      // comments and shite
       } else if (slide === 7) {
-        $el.find('button').click(function () {
-          setTimeout(function () { // Do some animation, spinner...
+        $el.find('a.button').click(function (evt) {
+          evt.preventDefault();
+          $el.find('a.button.selected').removeClass('selected');
+          $(this).addClass('selected');
+        });
+
+        $el.find('button.button').click(function () {
+
+          result.used_inhaler = $el.find('a.button.selected').hasClass('yes');
+          result.comment = $el.find('textarea').val();
+          Flow.modules.storage.storeResult(result);
+
+          setTimeout(function () { // TODO: Do some animation, spinner...
             Flow.views.home.navigateBackHome();
           }, 1000);
         });
@@ -69,10 +76,13 @@
   TakeTest.render = function ($element) {
     var self = this;
 
-    $el = $element;
+    $element.html($('#test_tpl').text());
 
+    $el = $element.find('#tests');
     $el.click(nextSlide);
-    $el.html($('#test_tpl').text());
+
+    slide = 0;
+    result = null;
   };
 
   Flow.views.taketest = TakeTest;

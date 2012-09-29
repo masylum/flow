@@ -14,17 +14,23 @@
     <link rel="stylesheet" href="css/iphone.css" type="text/css" />
 
     <!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
-    <script type="text/javascript" charset="utf-8" src="js/cordova-1.7.0.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/zepto.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/swipe.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/underscore.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/vendor/cordova-1.7.0.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/vendor/zepto.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/vendor/swipe.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/vendor/underscore.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/vendor/moment.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="js/vendor/RGraph.common.core.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/vendor/RGraph.line.js"></script>
 
     <script type="text/javascript" charset="utf-8" src="js/app/index.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/views/home.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/views/taketest.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/views/tutorial.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/views/results.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/views/single_result.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/modules/device.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/modules/storage.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/app/bootstrap.js"></script>
 
     <script type="text/javascript">
@@ -51,58 +57,76 @@
 
     <!-- templates -->
     <script type='text/template' id='results_tpl'>
+      <ul id='results'>
+        <% _.each(results, function (result, timestamp) {%>
+          <li class='result' id='result_<%=timestamp%>'>
+            <span class='tag'></span>
+            <span class='hour'>
+              <%= moment(+timestamp).format('dddd, MMM, HH:mm')%>
+            </span>
+            <span class='used_inhaler <%= result.used_inhaler? "yes" : "no"%>'></span>
+            <span class='TODO'></span>
+            <div class='single_result'></div>
+          </li>
+        <% });%>
+      </ul>
     </script>
 
     <script type='text/template' id='test_tpl'>
-      <div class='test-1'>
-        <img src='img/test-1.png' />
-        <p>Inhale as much air as you can</p>
-      </div>
-      <div class='test-2'>
-        <img src='img/test-2.png' />
-        <p>Exhale all the air until there is nothing left</p>
-      </div>
-      <div class='test-3'>
-        <p>Give it all you got!</p>
-      </div>
-      <div class='test-4'>
-        <div class='circle'></div>
-      </div>
-      <div class='test-5'>
-        <p>Now one more time</p>
-        <p>This time try harder!!</p>
-      </div>
-      <div class='test-6'>
-        <div class='circle'></div>
-      </div>
-      <div class='test-7'>
-        <div class='pef'>
-          <span class='title'>PEF</span>
-          <span class='value'></span>
-          <span class='icon spinner'></span>
+      <div id='tests'>
+        <div class='test-1'>
+          <img src='img/test-1.png' />
+          <p>Inhale as much air as you can</p>
         </div>
-        <div class='fev1'>
-          <span class='title'>FEV1</span>
-          <span class='value'></span>
-          <span class='icon spinner'></span>
+        <div class='test-2'>
+          <img src='img/test-2.png' />
+          <p>Exhale all the air until there is nothing left</p>
         </div>
-        <div class='fvc'>
-          <span class='title'>FEV1/FVC</span>
-          <span class='value'></span>
-          <span class='icon spinner'></span>
+        <div class='test-3'>
+          <p>Give it all you got!</p>
         </div>
-        <div class='graph'></div>
-        <div class='ok'></div>
+        <div class='test-4'>
+          <div class='circle'></div>
+        </div>
+        <div class='test-5'>
+          <p>Now one more time</p>
+          <p>This time try harder!!</p>
+        </div>
+        <div class='test-6'>
+          <div class='circle'></div>
+        </div>
+        <div class='test-7'>
+        </div>
+        <div class='test-8'>
+          <p>Did you use an inhaler before the test?</p>
+          <a class='button yes' href='#'>Yes</a>
+          <a class='button no selected' href='#'>No</a>
+          <p>Comments:</p>
+          <textarea></textarea>
+          <button class='button'>Save result</button>
+        </div>
       </div>
-      <div class='test-8'>
-        <p>Did you use an inhaler before the test?</p>
-        <a href='#'>Yes</a>
-        <a href='#'>No</a>
-        <p>Did you use an inhaler before the test?</p>
-        <textarea></textarea>
-        <button>Save result</button>
-        <div class='ok'></div>
-      </div>
+    </script>
+
+    <script type='text/template' id='single_result_tpl'>
+      <table>
+        <tr class='pef'>
+          <td class='title'>PEF</td>
+          <td class='value'></td>
+          <td class='icon'><img src='img/spinner.gif' height='32' width='32' /></td>
+        </tr>
+        <tr class='fev1'>
+          <td class='title'>FEV1</td>
+          <td class='value'></td>
+          <td class='icon'><img src='img/spinner.gif' height='32' width='32' /></td>
+        </tr>
+        <tr class='fvc'>
+          <td class='title'>FEV1/FVC</td>
+          <td class='value'></td>
+          <td class='icon'><img src='img/spinner.gif' height='32' width='32' /></td>
+        </tr>
+      </table>
+      <canvas id='chart' width="550" height="250"></canvas>
     </script>
 
     <script type='text/template' id='home_tpl'>
@@ -138,7 +162,7 @@
         </ol>
 
         <div id='content'></div>
-
+        <div style='clear:both'></div>
       </div>
     </script>
   </head>
