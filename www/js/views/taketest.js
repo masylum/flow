@@ -57,7 +57,8 @@
           $(this).addClass('selected');
         });
 
-        $el.find('button.button').click(function () {
+        $el.find('button.button').click(_.once(function () {
+          console.log('storing');
 
           result.used_inhaler = $el.find('a.button.selected').hasClass('yes');
           result.comment = $el.find('textarea').val();
@@ -66,7 +67,7 @@
           setTimeout(function () { // TODO: Do some animation, spinner...
             Flow.views.home.navigateBackHome();
           }, 1000);
-        });
+        }));
       } else {
         $el.click(nextSlide);
       }

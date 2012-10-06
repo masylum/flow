@@ -60,12 +60,12 @@
       <ul id='results'>
         <% _.each(results, function (result, timestamp) {%>
           <li class='result' id='result_<%=timestamp%>'>
-            <span class='tag'></span>
+            <span class='tag <%= Flow.modules.device.getClass('pef', result.pef)%>'></span>
             <span class='hour'>
               <%= moment(+timestamp).format('dddd, MMM, HH:mm')%>
             </span>
-            <span class='used_inhaler <%= result.used_inhaler? "yes" : "no"%>'></span>
-            <span class='TODO'></span>
+            <span class='<%= result.used_inhaler? "inhaler" : "no-inhaler"%>'></span>
+            <span class='air_quality_badge good'></span>
             <div class='single_result'></div>
           </li>
         <% });%>
@@ -156,10 +156,14 @@
 
           <li class='settings'>
             <div class='menu-icon'><img src='img/settings.png'/></div>
-            <div style='float: left'><a href='#'>Settings</a></div>
+            <div style='float: left'><a href='#'>More</a></div>
             <div style='clear:both'></div>
           </li>
         </ol>
+
+        <div id='air_quality_banner'>
+          <span class='air_quality_badge good'></span>Air quality: Good
+        </div>
 
         <div id='content'></div>
         <div style='clear:both'></div>

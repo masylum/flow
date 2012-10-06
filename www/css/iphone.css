@@ -1,9 +1,9 @@
 body {
   padding: 0;
   margin: 0;
-  background: #EEFBFF;
+  background: #33323e url(../img/background.png);
   font-family: Helvetica, sans-serif;
-  color: #333333; /*grey*/
+  color: #ddd; /*grey*/
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -56,6 +56,31 @@ button.button {
   width: 605px;
 }
 
+#air_quality_banner {
+  position: absolute;
+  bottom: 0;
+  padding: 20px;
+  line-height: 32px;
+  font-size: 22px;
+  width: 600px;
+  text-align: center;
+}
+
+#air_quality_banner span {
+  margin-right: 20px;
+  vertical-align: top;
+}
+
+.air_quality_badge {
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+}
+
+.air_quality_badge.good {
+  background: url(../img/aqb_good.png);
+}
+
 /* HOME */
 ol.menu, ol.tags {
   padding-top: 50px;
@@ -75,7 +100,7 @@ ol.menu, ol.tags {
   height: 58px;
   padding: 21px;
   padding-left: 80px;
-  text-shadow: 0px 1px 0px #fff;
+  text-shadow: 0px -1px 0px #222;
 }
 
 .home ol.tags li {
@@ -100,7 +125,7 @@ ol.menu, ol.tags {
 }
 
 .home ol.menu a {
-  color: #333333; /*grey*/
+  color: #ddd; /*grey*/
 }
 
 /* CONTENT */
@@ -146,10 +171,14 @@ ol.menu, ol.tags {
 }
 
 #content table tr.down td.value {
-  color: #fa4;
+  color: #fd4;
 }
 
-#content table tr.good td.value{
+#content table tr.danger td.value {
+  color: #f44;
+}
+
+#content table tr.ok td.value{
   color: #4d4;
 }
 
@@ -175,8 +204,35 @@ ol.menu, ol.tags {
 #results .result .tag {
   float: left;
   width: 10px;
-  background: #fa4;
   height: 100%;
+}
+
+#results .result .tag.ok {
+  background: #4d4;
+}
+
+#results .result .tag.down {
+  background: #fd4;
+}
+
+#results .result .tag.danger {
+  background: #f44;
+}
+
+#results .result .inhaler,
+#results .result .no-inhaler {
+  width: 32px;
+  height: 32px;
+  margin-left: 30px;
+  display: inline-block;
+}
+
+#results .result .inhaler {
+  background: no-repeat url(../img/inhaler.png);
+}
+
+#results .result .no-inhaler {
+  background: no-repeat url(../img/no-inhaler.png);
 }
 
 #results .result .hour {

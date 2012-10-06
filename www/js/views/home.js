@@ -26,7 +26,7 @@
 
   Home.navigateBackHome = function (evt) {
     $('#content').css({opacity: 0});
-    $('.menu').animate({opacity: 1, height: 443, 'padding-top': 50});
+    $('.menu').animate({opacity: 1, height: 300, 'padding-top': 50});
     $('.home').animate({'padding-top': 20});
     $('h1 img').animate({height: 60});
     $('.t-settings,.t-taketest,.t-results').animate({height: 100, opacity: 1});

@@ -24,34 +24,22 @@
   SingleResult.populate = function (data) {
     var line = new RGraph.Line('chart', _.pluck(data.series, 'volume'));
 
-    line.Set('chart.curvy', true);
+    line.Set('chart.spline', true);
+    line.Set('chart.colors', ['#a2d9ea']);
+    line.Set('chart.linewidth', 3);
+    line.Set('chart.background.grid', false);
+    line.Set('chart.text.color', '#fff');
+    line.Set('chart.axis.color', '#fff');
     line.Set('chart.labels', _.map(_.pluck(data.series, 'time'), toSeconds));
     line.Draw();
 
-    $el.find('.pef .value').text(data.pef.toFixed(2));
-    $el.find('.fev1 .value').text(data.fev1.toFixed(2));
-    $el.find('.fvc .value').text(data.fvc.toFixed(2));
+    _.each(['pef', 'fev1', 'fvc'], function (field) {
+      var device = Flow.modules.device
+        , klass = device.getClass(field, data[field]);
 
-    // PEF
-    if (data.pef > 1000) {
-      $el.find('.pef').addClass('good').find('img').attr('src', 'img/ok.png');
-    } else {
-      $el.find('.pef').addClass('down').find('img').attr('src', 'img/down.png');
-    }
-
-    // FEV1
-    if (data.fev1 > 1) {
-      $el.find('.fev1').addClass('good').find('img').attr('src', 'img/ok.png');
-    } else {
-      $el.find('.fev1').addClass('down').find('img').attr('src', 'img/down.png');
-    }
-
-    // FVC
-    if (data.fvc > 500) {
-      $el.find('.fvc').addClass('good').find('img').attr('src', 'img/ok.png');
-    } else {
-      $el.find('.fvc').addClass('down').find('img').attr('src', 'img/down.png');
-    }
+      $el.find('.' + field + ' .value').text(data[field].toFixed(2) + ' ' + device.getUnit(field));
+      $el.find('.' + field).addClass(klass).find('img').attr('src', 'img/' + klass + '.png');
+    });
   };
 
   Flow.views.single_result = SingleResult;

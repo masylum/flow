@@ -12,8 +12,6 @@
     $el.find('.result').hide();
     $li.addClass('collapsed').show();
 
-    console.log(timestamp, results);
-
     Flow.views.single_result.render($li.find('.single_result'));
     Flow.views.single_result.populate(results[timestamp]);
 
